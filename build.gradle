@@ -1,0 +1,56 @@
+plugins {
+    id 'org.springframework.boot' version '2.3.5.RELEASE' apply false
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE' apply false
+}
+
+allprojects {
+    group  = 'com.afniko'
+    version = '1.0-SNAPSHOT'
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'checkstyle'
+
+    sourceCompatibility = '1.11'
+    targetCompatibility = '1.11'
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+        maven {
+            name 'bintray-stokito-maven'
+            url 'https://dl.bintray.com/stokito/maven'
+        }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+
+    checkstyle {
+        configFile file("../checkstyle-config/checkstyle.xml")
+        toolVersion = "8.10.1"
+        showViolations = true
+        ignoreFailures = false
+    }
+
+    checkstyleMain {
+        source = 'src/main/java'
+    }
+
+    checkstyleTest {
+        source = 'src/test/java'
+    }
+
+    test.mustRunAfter checkstyleMain, checkstyleTest
+}
