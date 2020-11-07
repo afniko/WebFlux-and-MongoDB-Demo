@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  flux_demo:
+    build: flux-demo
+    image: flux-demo
+    ports:
+      - 8780:8780
+    depends_on:
+      - mongodb
+    network_mode: "host"
+    hostname: localhost
+    healthcheck:
+      test: "exit 0"
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - 27017:27017
+    network_mode: host
+    volumes:
+      - $HOME/mongo:/data/db
+    healthcheck:
+      test: "exit 0"

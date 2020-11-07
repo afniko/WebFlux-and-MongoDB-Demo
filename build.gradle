@@ -6,6 +6,10 @@ plugins {
 allprojects {
     group  = 'com.afniko'
     version = '1.0-SNAPSHOT'
+
+    ext {
+        commonsLangVersion = '3.11'
+    }
 }
 
 subprojects {
