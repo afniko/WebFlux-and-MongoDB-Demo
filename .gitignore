@@ -4,3 +4,6 @@
 #Gradle
 .gradle/
 build/
+
+#log
+/flux-demo/logs/
