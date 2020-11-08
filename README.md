@@ -17,32 +17,32 @@ port: 27017.
 ## WebFlux module
    Outside port:8780. 
    Used endpoints: 
-#### For controllers - "http://localhost:8780/node/controller"
+#### For controllers - "http://IpAddressOfHost:8780/node/controller"
 
    GET request - respond list of all Nodes in type of Flux<@NodeDto>:
    
    POST request - get JSON object with field:  
 ```json
  {
-    "id": "1",                        - *Optional parameter
-    "name": "some name",              - *Mandatory parameter
-    "description": "description text" - *Optional parameter
+    "id": "1",                         //Optional parameter
+    "name": "some name",               //Mandatory parameter
+    "description": "description text"  //Optional parameter
  }  
 ```                                             
                                                 
-####               For functional interfaces - "http://localhost:8780/node/functional"
+#### For functional interfaces - "http://IpAddressOfHost:8780/node/functional"
    GET request - respond list of all Nodes in type of Mono<@NodeDto>:
    
    POST request - get JSON object with field:  
 ```json
  {
-    "id": "1",                        - *Optional parameter
-    "name": "some name",              - *Mandatory parameter
-    "description": "description text" - *Optional parameter
+    "id": "1",                         //Optional parameter
+    "name": "some name",               //Mandatory parameter
+    "description": "description text"  //Optional parameter
  }  
 ``` 
       
-####   MongoDb 
+#### MongoDb 
    MongoDb connection: by link "mongodb"
    
 ## Create and Run
@@ -65,30 +65,30 @@ With best regards, Mykola Afanasiev!
    
    1. Update the apt package index and install packages to allow apt to use a repository over HTTPS.
 ```
-   $ sudo apt-get update
+$ sudo apt-get update
 ```
 ```
- $ sudo apt install apt-transport-https ca-certificates curl software-properties-common
+$ sudo apt install apt-transport-https ca-certificates curl software-properties-common
 ```  
    2. Add Docker’s official GPG key.
 ```
-   $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 ```  
    3. Add the Docker repository to APT sources.
 ```
-   $ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+$ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
 ```   
    4. update the package database with the Docker packages from the newly added repo.
 ```
-   $ sudo apt update
+$ sudo apt update
 ```  
    5. Finally, install Docker.
 ```
-   $ sudo apt install docker-ce
+$ sudo apt install docker-ce
 ```   
    6. Verify if the Docker is running.
 ```
-   $ sudo systemctl status docker
+$ sudo systemctl status docker
 ```   
    This figure shows the status of docker.
    
