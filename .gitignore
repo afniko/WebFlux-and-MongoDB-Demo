@@ -6,4 +6,4 @@
 build/
 
 #log
-/flux-demo/logs/
+**logs/
