@@ -3,18 +3,30 @@ package com.afniko.core.model;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "node")
 public class NodeRoot {
 
-    private long id;
+    @Id
+    private String id;
 
     private String name;
 
-    public long getId() {
+    public NodeRoot() {
+    }
+
+    public NodeRoot(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

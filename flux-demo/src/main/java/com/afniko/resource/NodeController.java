@@ -1,43 +1,43 @@
 package com.afniko.resource;
 
-import com.afniko.core.model.NodeRoot;
-import com.afniko.core.service.NodeRootService;
+import com.afniko.core.dto.NodeDto;
+import com.afniko.core.service.NodeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
-import java.util.List;
-
-import static com.afniko.resource.NodeController.URL;
+import static com.afniko.Constants.Endpoints;
 
 @RestController
-@RequestMapping(URL)
+@RequestMapping(Endpoints.NODE)
 public class NodeController {
 
     private static final Logger LOG = LoggerFactory.getLogger(NodeController.class);
 
-    static final String URL = "/node";
+    private final NodeService nodeService;
 
-    private final NodeRootService nodeRootService;
-
-    public NodeController(NodeRootService nodeRootService) {
-        this.nodeRootService = nodeRootService;
+    public NodeController(NodeService nodeService) {
+        this.nodeService = nodeService;
     }
 
-    @GetMapping
-    public List<NodeRoot> getTestMessage() {
-        LOG.debug("In getTestMessage - GET request for get message");
-
-        return nodeRootService.findAll();
+    @GetMapping(consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public Flux<NodeDto> getNodes() {
+        LOG.debug("In getNodes - GET request for get message");
+        return nodeService.findAll();
     }
 
-    @PostMapping
-    public NodeRoot saveNode(@RequestBody NodeRoot nodeRoot) {
-        LOG.debug("In saveNode - POST save nodeRoot: [{}]", nodeRoot);
-        return nodeRootService.save(nodeRoot);
+    @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE},
+            consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public Mono<NodeDto> saveNode(@RequestBody NodeDto node) {
+        LOG.debug("In saveNode - POST save node: [{}]", node);
+        return nodeService.save(node);
     }
+
 }

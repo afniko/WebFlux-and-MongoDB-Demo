@@ -4,19 +4,33 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class NodeDescDto {
+public class NodeDto {
 
-    private long id;
+    private String id;
 
     private String name;
 
     private String description;
 
-    public long getId() {
+    public NodeDto() {
+    }
+
+    public NodeDto(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public NodeDto(String id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -42,11 +56,11 @@ public class NodeDescDto {
             return true;
         }
 
-        if (!(o instanceof NodeDescDto)) {
+        if (!(o instanceof NodeDto)) {
             return false;
         }
 
-        NodeDescDto nodeDesc = (NodeDescDto) o;
+        NodeDto nodeDesc = (NodeDto) o;
 
         return new EqualsBuilder()
                 .append(getId(), nodeDesc.getId())
