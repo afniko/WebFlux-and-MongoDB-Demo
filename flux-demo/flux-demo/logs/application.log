@@ -1,0 +1,96 @@
+2020-11-08 12:18:03.096  INFO 38723 --- [Test worker] com.afniko.FluxDemoBootApplicationTest   : Starting FluxDemoBootApplicationTest on afniko-MS with PID 38723 (started by root in /home/afniko/git/docker-demo/flux-demo)
+2020-11-08 12:18:03.097 DEBUG 38723 --- [Test worker] com.afniko.FluxDemoBootApplicationTest   : Running with Spring Boot v2.3.5.RELEASE, Spring v5.2.10.RELEASE
+2020-11-08 12:18:03.097  INFO 38723 --- [Test worker] com.afniko.FluxDemoBootApplicationTest   : No active profile set, falling back to default profiles: default
+2020-11-08 12:18:03.401  INFO 38723 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Reactive MongoDB repositories in DEFAULT mode.
+2020-11-08 12:18:03.503  INFO 38723 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 99ms. Found 2 Reactive MongoDB repository interfaces.
+2020-11-08 12:18:03.802  INFO 38723 --- [Test worker] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[mongodb:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2020-11-08 12:18:03.842  INFO 38723 --- [cluster-ClusterId{value='5fa7c5dbd1821a5670f3ab67', description='null'}-mongodb:27017] org.mongodb.driver.cluster               : Exception in monitor thread while connecting to server mongodb:27017
+
+com.mongodb.MongoSocketException: mongodb: Name or service not known
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:211) ~[mongodb-driver-core-4.0.5.jar:na]
+	at com.mongodb.connection.netty.NettyStream.openAsync(NettyStream.java:109) ~[mongodb-driver-core-4.0.5.jar:na]
+	at com.mongodb.connection.netty.NettyStream.open(NettyStream.java:103) ~[mongodb-driver-core-4.0.5.jar:na]
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:127) ~[mongodb-driver-core-4.0.5.jar:na]
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:117) ~[mongodb-driver-core-4.0.5.jar:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+Caused by: java.net.UnknownHostException: mongodb: Name or service not known
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method) ~[na:na]
+	at java.base/java.net.InetAddress$PlatformNameService.lookupAllHostAddr(InetAddress.java:929) ~[na:na]
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1515) ~[na:na]
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:848) ~[na:na]
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1505) ~[na:na]
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1364) ~[na:na]
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1298) ~[na:na]
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:203) ~[mongodb-driver-core-4.0.5.jar:na]
+	... 5 common frames omitted
+
+2020-11-08 12:18:04.348  INFO 38723 --- [Test worker] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port(s): 43753
+2020-11-08 12:18:04.355  INFO 38723 --- [Test worker] com.afniko.FluxDemoBootApplicationTest   : Started FluxDemoBootApplicationTest in 1.43 seconds (JVM running for 2.061)
+2020-11-08 12:18:51.527  INFO 38896 --- [Test worker] com.afniko.FluxDemoBootApplicationTest   : Starting FluxDemoBootApplicationTest on afniko-MS with PID 38896 (started by root in /home/afniko/git/docker-demo/flux-demo)
+2020-11-08 12:18:51.528 DEBUG 38896 --- [Test worker] com.afniko.FluxDemoBootApplicationTest   : Running with Spring Boot v2.3.5.RELEASE, Spring v5.2.10.RELEASE
+2020-11-08 12:18:51.528  INFO 38896 --- [Test worker] com.afniko.FluxDemoBootApplicationTest   : No active profile set, falling back to default profiles: default
+2020-11-08 12:18:51.808  INFO 38896 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Reactive MongoDB repositories in DEFAULT mode.
+2020-11-08 12:18:51.912  INFO 38896 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 100ms. Found 2 Reactive MongoDB repository interfaces.
+2020-11-08 12:18:52.235  INFO 38896 --- [Test worker] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[mongodb:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2020-11-08 12:18:52.259  INFO 38896 --- [cluster-ClusterId{value='5fa7c60c148d7260d6011bd9', description='null'}-mongodb:27017] org.mongodb.driver.cluster               : Exception in monitor thread while connecting to server mongodb:27017
+
+com.mongodb.MongoSocketException: mongodb: Name or service not known
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:211) ~[mongodb-driver-core-4.0.5.jar:na]
+	at com.mongodb.connection.netty.NettyStream.openAsync(NettyStream.java:109) ~[mongodb-driver-core-4.0.5.jar:na]
+	at com.mongodb.connection.netty.NettyStream.open(NettyStream.java:103) ~[mongodb-driver-core-4.0.5.jar:na]
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:127) ~[mongodb-driver-core-4.0.5.jar:na]
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:117) ~[mongodb-driver-core-4.0.5.jar:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+Caused by: java.net.UnknownHostException: mongodb: Name or service not known
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method) ~[na:na]
+	at java.base/java.net.InetAddress$PlatformNameService.lookupAllHostAddr(InetAddress.java:929) ~[na:na]
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1515) ~[na:na]
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:848) ~[na:na]
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1505) ~[na:na]
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1364) ~[na:na]
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1298) ~[na:na]
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:203) ~[mongodb-driver-core-4.0.5.jar:na]
+	... 5 common frames omitted
+
+2020-11-08 12:18:52.752  INFO 38896 --- [Test worker] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port(s): 42019
+2020-11-08 12:18:52.758  INFO 38896 --- [Test worker] com.afniko.FluxDemoBootApplicationTest   : Started FluxDemoBootApplicationTest in 1.391 seconds (JVM running for 2.027)
+2020-11-08 13:40:58.327  INFO 45800 --- [Test worker] com.afniko.FluxDemoBootApplicationTest   : Starting FluxDemoBootApplicationTest on afniko-MS with PID 45800 (started by root in /home/afniko/git/docker-demo/flux-demo)
+2020-11-08 13:40:58.328 DEBUG 45800 --- [Test worker] com.afniko.FluxDemoBootApplicationTest   : Running with Spring Boot v2.3.5.RELEASE, Spring v5.2.10.RELEASE
+2020-11-08 13:40:58.328  INFO 45800 --- [Test worker] com.afniko.FluxDemoBootApplicationTest   : No active profile set, falling back to default profiles: default
+2020-11-08 13:40:58.630  INFO 45800 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Reactive MongoDB repositories in DEFAULT mode.
+2020-11-08 13:40:58.730  INFO 45800 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 96ms. Found 2 Reactive MongoDB repository interfaces.
+2020-11-08 13:40:59.447 DEBUG 45800 --- [Test worker] c.a.r.functional.config.NodeRouter       : In route - set routes
+2020-11-08 13:40:59.788  INFO 45800 --- [Test worker] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port(s): 33091
+2020-11-08 13:40:59.794  INFO 45800 --- [Test worker] com.afniko.FluxDemoBootApplicationTest   : Started FluxDemoBootApplicationTest in 1.632 seconds (JVM running for 2.272)
+2020-11-08 13:44:25.384  INFO 46951 --- [Test worker] com.afniko.FluxDemoBootApplicationTest   : Starting FluxDemoBootApplicationTest on afniko-MS with PID 46951 (started by root in /home/afniko/git/docker-demo/flux-demo)
+2020-11-08 13:44:25.385 DEBUG 46951 --- [Test worker] com.afniko.FluxDemoBootApplicationTest   : Running with Spring Boot v2.3.5.RELEASE, Spring v5.2.10.RELEASE
+2020-11-08 13:44:25.386  INFO 46951 --- [Test worker] com.afniko.FluxDemoBootApplicationTest   : No active profile set, falling back to default profiles: default
+2020-11-08 13:44:25.689  INFO 46951 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Reactive MongoDB repositories in DEFAULT mode.
+2020-11-08 13:44:25.789  INFO 46951 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 96ms. Found 2 Reactive MongoDB repository interfaces.
+2020-11-08 13:44:26.523 DEBUG 46951 --- [Test worker] c.a.r.functional.config.NodeRouter       : In route - set routes
+2020-11-08 13:44:26.873  INFO 46951 --- [Test worker] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port(s): 45967
+2020-11-08 13:44:26.879  INFO 46951 --- [Test worker] com.afniko.FluxDemoBootApplicationTest   : Started FluxDemoBootApplicationTest in 1.662 seconds (JVM running for 2.324)
+2020-11-08 14:07:20.926  INFO 51359 --- [Test worker] com.afniko.FluxDemoBootApplicationTest   : Starting FluxDemoBootApplicationTest on afniko-MS with PID 51359 (started by root in /home/afniko/git/docker-demo/flux-demo)
+2020-11-08 14:07:20.927 DEBUG 51359 --- [Test worker] com.afniko.FluxDemoBootApplicationTest   : Running with Spring Boot v2.3.5.RELEASE, Spring v5.2.10.RELEASE
+2020-11-08 14:07:20.931  INFO 51359 --- [Test worker] com.afniko.FluxDemoBootApplicationTest   : No active profile set, falling back to default profiles: default
+2020-11-08 14:07:21.243  INFO 51359 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Reactive MongoDB repositories in DEFAULT mode.
+2020-11-08 14:07:21.345  INFO 51359 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 98ms. Found 2 Reactive MongoDB repository interfaces.
+2020-11-08 14:07:22.114 DEBUG 51359 --- [Test worker] c.a.r.functional.config.NodeRouter       : In route - set routes
+2020-11-08 14:07:22.469  INFO 51359 --- [Test worker] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port(s): 45621
+2020-11-08 14:07:22.475  INFO 51359 --- [Test worker] com.afniko.FluxDemoBootApplicationTest   : Started FluxDemoBootApplicationTest in 1.723 seconds (JVM running for 2.39)
+2020-11-08 14:19:54.793  INFO 53896 --- [Test worker] com.afniko.FluxDemoBootApplicationTest   : Starting FluxDemoBootApplicationTest on afniko-MS with PID 53896 (started by root in /home/afniko/git/docker-demo/flux-demo)
+2020-11-08 14:19:54.794 DEBUG 53896 --- [Test worker] com.afniko.FluxDemoBootApplicationTest   : Running with Spring Boot v2.3.5.RELEASE, Spring v5.2.10.RELEASE
+2020-11-08 14:19:54.794  INFO 53896 --- [Test worker] com.afniko.FluxDemoBootApplicationTest   : No active profile set, falling back to default profiles: default
+2020-11-08 14:19:55.106  INFO 53896 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Reactive MongoDB repositories in DEFAULT mode.
+2020-11-08 14:19:55.212  INFO 53896 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 102ms. Found 2 Reactive MongoDB repository interfaces.
+2020-11-08 14:19:55.912 DEBUG 53896 --- [Test worker] c.a.r.functional.config.NodeRouter       : In route - set routes
+2020-11-08 14:19:56.260  INFO 53896 --- [Test worker] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port(s): 42415
+2020-11-08 14:19:56.267  INFO 53896 --- [Test worker] com.afniko.FluxDemoBootApplicationTest   : Started FluxDemoBootApplicationTest in 1.637 seconds (JVM running for 2.279)
+2020-11-08 14:46:09.520  INFO 57469 --- [Test worker] com.afniko.FluxDemoBootApplicationTest   : Starting FluxDemoBootApplicationTest on afniko-MS with PID 57469 (started by root in /home/afniko/git/docker-demo/flux-demo)
+2020-11-08 14:46:09.521 DEBUG 57469 --- [Test worker] com.afniko.FluxDemoBootApplicationTest   : Running with Spring Boot v2.3.5.RELEASE, Spring v5.2.10.RELEASE
+2020-11-08 14:46:09.522  INFO 57469 --- [Test worker] com.afniko.FluxDemoBootApplicationTest   : No active profile set, falling back to default profiles: default
+2020-11-08 14:46:09.811  INFO 57469 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Reactive MongoDB repositories in DEFAULT mode.
+2020-11-08 14:46:09.913  INFO 57469 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 98ms. Found 2 Reactive MongoDB repository interfaces.
+2020-11-08 14:46:10.671 DEBUG 57469 --- [Test worker] c.a.r.functional.config.NodeRouter       : In route - set routes
+2020-11-08 14:46:10.972  INFO 57469 --- [Test worker] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port(s): 39867
+2020-11-08 14:46:10.978  INFO 57469 --- [Test worker] com.afniko.FluxDemoBootApplicationTest   : Started FluxDemoBootApplicationTest in 1.623 seconds (JVM running for 2.287)

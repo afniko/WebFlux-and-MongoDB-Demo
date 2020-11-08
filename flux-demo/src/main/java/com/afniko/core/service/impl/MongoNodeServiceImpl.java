@@ -26,7 +26,10 @@ public class MongoNodeServiceImpl implements NodeService {
 
     private final TypeConverterFacade converterFacade;
 
-    public MongoNodeServiceImpl(NodeRootRepository nodeRootRepository, NodeDescRepository nodeDescRepository, TypeConverterFacade converterFacade) {
+    public MongoNodeServiceImpl(
+            NodeRootRepository nodeRootRepository,
+            NodeDescRepository nodeDescRepository,
+            TypeConverterFacade converterFacade) {
         this.nodeRootRepository = nodeRootRepository;
         this.nodeDescRepository = nodeDescRepository;
         this.converterFacade = converterFacade;
@@ -34,7 +37,7 @@ public class MongoNodeServiceImpl implements NodeService {
 
     @Override
     public Mono<NodeDto> save(NodeDto dto) {
-        LOG.debug("In save - save NodeRoot: [{}]", dto);
+        LOG.debug("In save - save node: [{}]", dto);
 
         if (nonNull(dto.getDescription())) {
             final NodeDesc node = converterFacade.convert(dto, NodeDesc.class);
@@ -48,8 +51,16 @@ public class MongoNodeServiceImpl implements NodeService {
     }
 
     @Override
+    public Mono<NodeDto> save(Mono<NodeDto> nodeDtoMono) {
+        LOG.debug("In save - save node in Mono type");
+        return nodeDtoMono
+                .flatMap(this::save);
+
+    }
+
+    @Override
     public Flux<NodeDto> findAll() {
-        LOG.debug(" IN findAll - find all nodesRoot");
+        LOG.debug("In findAll - find all nodes");
         return nodeDescRepository.findAll()
                 .map(o -> converterFacade.convert(o, NodeDto.class));
     }

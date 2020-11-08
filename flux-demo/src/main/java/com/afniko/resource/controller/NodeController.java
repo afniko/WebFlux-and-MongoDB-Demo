@@ -1,4 +1,4 @@
-package com.afniko.resource;
+package com.afniko.resource.controller;
 
 import com.afniko.core.dto.NodeDto;
 import com.afniko.core.service.NodeService;
@@ -16,7 +16,7 @@ import reactor.core.publisher.Mono;
 import static com.afniko.Constants.Endpoints;
 
 @RestController
-@RequestMapping(Endpoints.NODE)
+@RequestMapping(Endpoints.NODE_CONTROLLER)
 public class NodeController {
 
     private static final Logger LOG = LoggerFactory.getLogger(NodeController.class);

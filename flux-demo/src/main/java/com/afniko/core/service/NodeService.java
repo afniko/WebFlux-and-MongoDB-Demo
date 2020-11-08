@@ -8,6 +8,7 @@ public interface NodeService {
 
     Mono<NodeDto> save(NodeDto nodeRootDto);
 
-    Flux<NodeDto> findAll();
+    Mono<NodeDto> save(Mono<NodeDto> nodeDtoMono);
 
+    Flux<NodeDto> findAll();
 }

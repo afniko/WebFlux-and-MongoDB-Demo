@@ -25,9 +25,13 @@ public class NodeDesc extends NodeRoot {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
+        if (this == o) {
+            return true;
+        }
 
-        if (!(o instanceof NodeDesc)) return false;
+        if (!(o instanceof NodeDesc)) {
+            return false;
+        }
 
         NodeDesc nodeDesc = (NodeDesc) o;
 
