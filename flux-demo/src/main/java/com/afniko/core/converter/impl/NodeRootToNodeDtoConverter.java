@@ -3,10 +3,17 @@ package com.afniko.core.converter.impl;
 import com.afniko.core.converter.TypeConverter;
 import com.afniko.core.dto.NodeDto;
 import com.afniko.core.model.NodeRoot;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 @Component
 public class NodeRootToNodeDtoConverter implements TypeConverter<NodeRoot, NodeDto> {
+
+    private ModelMapper mapper;
+
+    public NodeRootToNodeDtoConverter(ModelMapper mapper) {
+        this.mapper = mapper;
+    }
 
     @Override
     public Class<NodeRoot> getSourceClass() {
@@ -20,10 +27,7 @@ public class NodeRootToNodeDtoConverter implements TypeConverter<NodeRoot, NodeD
 
     @Override
     public NodeDto convert(NodeRoot node) {
-        return new NodeDto(
-                node.getId(),
-                node.getName()
-        );
+        return mapper.map(node, NodeDto.class);
     }
 
 }

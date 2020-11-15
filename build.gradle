@@ -9,6 +9,7 @@ allprojects {
 
     ext {
         commonsLangVersion = '3.11'
+        modelMapperVersion = '2.3.8'
     }
 }
 

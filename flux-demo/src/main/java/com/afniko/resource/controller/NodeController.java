@@ -27,7 +27,7 @@ public class NodeController {
         this.nodeService = nodeService;
     }
 
-    @GetMapping(consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping
     public Flux<NodeDto> getNodes() {
         LOG.debug("In getNodes - GET request for get message");
         return nodeService.findAll();

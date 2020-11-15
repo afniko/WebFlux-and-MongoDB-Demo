@@ -1,5 +1,6 @@
-package com.afniko.resource.controller;
+package com.afniko.resource.functional.config;
 
+import com.afniko.Constants;
 import com.afniko.FluxDemoBootApplication;
 import com.afniko.core.dto.NodeDto;
 import com.afniko.core.service.NodeService;
@@ -16,12 +17,12 @@ import reactor.core.publisher.Mono;
 
 import java.util.List;
 
-import static com.afniko.Constants.Endpoints;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = FluxDemoBootApplication.class)
-class NodeControllerTest {
+class NodeRouterTest {
 
     @Autowired
     private WebTestClient webTestClient;
@@ -43,7 +44,7 @@ class NodeControllerTest {
         when(nodeService.findAll()).thenReturn(expected);
 
         webTestClient
-                .get().uri(Endpoints.NODE_CONTROLLER)
+                .get().uri(Constants.Endpoints.NODE_FUNCTIONAL)
                 .accept(MediaType.APPLICATION_JSON)
                 .exchange()
                 .expectStatus().isOk()
@@ -58,11 +59,11 @@ class NodeControllerTest {
         final NodeDto node = getNodeDtoDesc(id1);
         final Mono<NodeDto> expected = Mono.just(node);
 
-        when(nodeService.save(node)).thenReturn(expected);
+        when(nodeService.save(any(Mono.class))).thenReturn(expected);
 
         webTestClient
                 .post()
-                .uri(Endpoints.NODE_CONTROLLER)
+                .uri(Constants.Endpoints.NODE_FUNCTIONAL)
                 .bodyValue(node)
                 .accept(MediaType.APPLICATION_JSON)
                 .exchange()
