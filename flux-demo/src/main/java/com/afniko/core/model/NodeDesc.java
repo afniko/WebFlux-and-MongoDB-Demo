@@ -14,6 +14,9 @@ public class NodeDesc extends NodeRoot {
         return description;
     }
 
+    public NodeDesc() {
+    }
+
     public NodeDesc(String id, String name, String description) {
         super(id, name);
         this.description = description;
