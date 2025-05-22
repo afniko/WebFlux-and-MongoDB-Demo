@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  flux_demo:
+    build: flux-demo
+    image: flux-demo
+    container_name: flux-demo
+    ports:
+      - 8780:8780
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+    healthcheck:
+      test: "exit 0"
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    volumes:
+      - $HOME/mongo:/data/db
+    healthcheck:
+      test: "exit 0"
