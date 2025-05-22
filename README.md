@@ -29,7 +29,9 @@ port: 27017.
     "description": "description text"  //Optional parameter
  }  
 ```                                             
-                                                
+   DELETE request—remove Node from DB by path variable id. For example, if need remove Node with id '682ed1411a27f820595e3ff9'
+should send request: "http://IpAddressOfHost:8780/node/controller/682ed1411a27f820595e3ff9"
+
 #### For functional interfaces - "http://IpAddressOfHost:8780/node/functional"
    GET request - respond list of all Nodes in type of Mono<@NodeDto>:
    
@@ -41,7 +43,9 @@ port: 27017.
     "description": "description text"  //Optional parameter
  }  
 ``` 
-      
+   DELETE request—remove Node from DB by path variable id. For example, if need remove Node with id '682ed1411a27f820595e3ff9'
+should send request: "http://IpAddressOfHost:8780/node/functional/682ed1411a27f820595e3ff9"
+
 #### MongoDb 
    MongoDb connection: by link "mongodb"
    

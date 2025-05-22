@@ -42,4 +42,14 @@ public class NodeHandler {
                 .body(nodes, NodeDto.class);
     }
 
+    public Mono<ServerResponse> deleteNode(ServerRequest request) {
+        final String id = request.pathVariable("id");
+        LOG.debug("In deleteNode - handle request for delete node with id: [{}]", id);
+        
+        return nodeService.deleteById(id)
+                .then(ServerResponse
+                    .ok()
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .build());
+    }
 }

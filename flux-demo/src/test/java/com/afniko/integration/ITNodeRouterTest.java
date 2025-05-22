@@ -1,11 +1,17 @@
 package com.afniko.integration;
 
+import static com.afniko.Constants.Endpoints;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+
 import com.afniko.FluxDemoBootApplication;
 import com.afniko.core.dto.NodeDto;
 import com.afniko.core.model.NodeDesc;
 import com.afniko.core.model.NodeRoot;
 import com.afniko.core.repository.NodeDescRepository;
 import com.afniko.core.repository.NodeRootRepository;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +20,11 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 import java.util.List;
 
-import static com.afniko.Constants.Endpoints;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = FluxDemoBootApplication.class)
@@ -53,13 +56,13 @@ class ITNodeRouterTest {
         when(nodeDescRepository.findAll()).thenReturn(nodeDescFlux);
 
         webTestClient
-                .get().uri(Endpoints.NODE_FUNCTIONAL)
-                .accept(MediaType.APPLICATION_JSON)
-                .exchange()
-                .expectStatus().isOk()
-                .expectBodyList(NodeDto.class)
-                .hasSize(3)
-                .isEqualTo(nodeList);
+            .get().uri(Endpoints.NODE_FUNCTIONAL)
+            .accept(MediaType.APPLICATION_JSON)
+            .exchange()
+            .expectStatus().isOk()
+            .expectBodyList(NodeDto.class)
+            .hasSize(3)
+            .isEqualTo(nodeList);
     }
 
     @Test
@@ -72,13 +75,13 @@ class ITNodeRouterTest {
         when(nodeDescRepository.save(any(NodeDesc.class))).thenReturn(nodeDescMono);
 
         webTestClient
-                .post()
-                .uri(Endpoints.NODE_FUNCTIONAL)
-                .bodyValue(node)
-                .accept(MediaType.APPLICATION_JSON)
-                .exchange()
-                .expectStatus().isOk()
-                .expectBody(NodeDto.class).isEqualTo(node);
+            .post()
+            .uri(Endpoints.NODE_FUNCTIONAL)
+            .bodyValue(node)
+            .accept(MediaType.APPLICATION_JSON)
+            .exchange()
+            .expectStatus().isOk()
+            .expectBody(NodeDto.class).isEqualTo(node);
 
     }
 
@@ -92,41 +95,55 @@ class ITNodeRouterTest {
         when(nodeRootRepository.save(any(NodeRoot.class))).thenReturn(nodeDescMono);
 
         webTestClient
-                .post()
-                .uri(Endpoints.NODE_FUNCTIONAL)
-                .bodyValue(node)
-                .accept(MediaType.APPLICATION_JSON)
-                .exchange()
-                .expectStatus().isOk()
-                .expectBody(NodeDto.class).isEqualTo(node);
+            .post()
+            .uri(Endpoints.NODE_FUNCTIONAL)
+            .bodyValue(node)
+            .accept(MediaType.APPLICATION_JSON)
+            .exchange()
+            .expectStatus().isOk()
+            .expectBody(NodeDto.class).isEqualTo(node);
 
+    }
+
+    @Test
+    void whenDeleteNodeById_thenReturnOkStatus() {
+        final String id = "1";
+        when(nodeRootRepository.deleteById(id)).thenReturn(Mono.empty());
+        when(nodeDescRepository.deleteById(id)).thenReturn(Mono.empty());
+
+        webTestClient
+            .delete()
+            .uri(Endpoints.NODE_FUNCTIONAL + "/{id}", id)
+            .accept(MediaType.APPLICATION_JSON)
+            .exchange()
+            .expectStatus().isOk()
+            .expectBody().isEmpty();
     }
 
     private NodeDto getNodeDtoDesc(String id) {
         return new NodeDto(
-                id,
-                "name".concat(id),
-                "description".concat(id));
+            id,
+            "name".concat(id),
+            "description".concat(id));
     }
 
     private NodeDto getNodeDtoRoot(String id) {
         return new NodeDto(
-                id,
-                "name".concat(id),
-                null);
+            id,
+            "name".concat(id),
+            null);
     }
 
     private NodeDesc getNodeDesc(String id) {
         return new NodeDesc(
-                id,
-                "name".concat(id),
-                "description".concat(id));
+            id,
+            "name".concat(id),
+            "description".concat(id));
     }
 
     private NodeRoot getNodeRoot(String id) {
         return new NodeRoot(
-                id,
-                "name".concat(id));
+            id,
+            "name".concat(id));
     }
-
 }

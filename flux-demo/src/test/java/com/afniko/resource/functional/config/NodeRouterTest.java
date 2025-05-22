@@ -72,11 +72,24 @@ class NodeRouterTest {
 
     }
 
+    @Test
+    void whenDeleteNode_thenReturnOkStatus() {
+        final String id = "1";
+        when(nodeService.deleteById(id)).thenReturn(Mono.empty());
+        
+        webTestClient
+                .delete()
+                .uri(Constants.Endpoints.NODE_FUNCTIONAL + "/{id}", id)
+                .accept(MediaType.APPLICATION_JSON)
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody().isEmpty();
+    }
+    
     private NodeDto getNodeDtoDesc(String id) {
         return new NodeDto(
                 id,
                 "name".concat(id),
                 "description".concat(id));
     }
-
 }

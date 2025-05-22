@@ -1,6 +1,9 @@
 package com.afniko.resource.functional.config;
 
+import static com.afniko.Constants.Endpoints;
+
 import com.afniko.resource.functional.handler.NodeHandler;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -12,8 +15,6 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
-import static com.afniko.Constants.Endpoints;
-
 @Configuration
 public class NodeRouter {
 
@@ -24,9 +25,12 @@ public class NodeRouter {
         LOG.debug("In route - set routes with handlers");
         final RequestPredicate routeAllNodes = RequestPredicates.GET(Endpoints.NODE_FUNCTIONAL).and(RequestPredicates.accept(MediaType.APPLICATION_JSON));
         final RequestPredicate routeSaveNode = RequestPredicates.POST(Endpoints.NODE_FUNCTIONAL).and(RequestPredicates.accept(MediaType.APPLICATION_JSON));
+        final RequestPredicate routeDeleteNode = RequestPredicates.DELETE(Endpoints.NODE_FUNCTIONAL + "/{id}")
+            .and(RequestPredicates.accept(MediaType.APPLICATION_JSON));
 
         return RouterFunctions
-                .route(routeAllNodes, nodeHandler::getNodes)
-                .andRoute(routeSaveNode, nodeHandler::saveNode);
+            .route(routeAllNodes, nodeHandler::getNodes)
+            .andRoute(routeSaveNode, nodeHandler::saveNode)
+            .andRoute(routeDeleteNode, nodeHandler::deleteNode);
     }
 }

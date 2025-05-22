@@ -1,27 +1,29 @@
 package com.afniko.core.service.impl;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
+
 import com.afniko.core.converter.TypeConverterFacade;
 import com.afniko.core.dto.NodeDto;
 import com.afniko.core.model.NodeDesc;
 import com.afniko.core.model.NodeRoot;
 import com.afniko.core.repository.NodeDescRepository;
 import com.afniko.core.repository.NodeRootRepository;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
-import reactor.test.StepVerifier;
 
 import java.util.function.Predicate;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+import reactor.test.StepVerifier;
 
 @ExtendWith(MockitoExtension.class)
 class MongoNodeServiceImplTest {
@@ -60,12 +62,12 @@ class MongoNodeServiceImplTest {
 
         Predicate<NodeDto> match = node -> expected.any(saveItem -> saveItem.equals(node)).block();
         StepVerifier
-                .create(nodeDtoFlux)
-                .expectNextMatches(match)
-                .expectNextMatches(match)
-                .expectNextMatches(match)
-                .expectComplete()
-                .verify();
+            .create(nodeDtoFlux)
+            .expectNextMatches(match)
+            .expectNextMatches(match)
+            .expectNextMatches(match)
+            .expectComplete()
+            .verify();
     }
 
     @Test
@@ -82,10 +84,10 @@ class MongoNodeServiceImplTest {
         final Mono<NodeDto> result = service.save(nodeDtoMono);
 
         StepVerifier
-                .create(result)
-                .expectNext(nodeDto)
-                .expectComplete()
-                .verify();
+            .create(result)
+            .expectNext(nodeDto)
+            .expectComplete()
+            .verify();
     }
 
     @Test
@@ -105,10 +107,10 @@ class MongoNodeServiceImplTest {
         verifyNoMoreInteractions(converterFacade);
 
         StepVerifier
-                .create(result)
-                .expectNext(nodeDto)
-                .expectComplete()
-                .verify();
+            .create(result)
+            .expectNext(nodeDto)
+            .expectComplete()
+            .verify();
     }
 
     @Test
@@ -125,10 +127,10 @@ class MongoNodeServiceImplTest {
         final Mono<NodeDto> result = service.save(nodeDtoMono);
 
         StepVerifier
-                .create(result)
-                .expectNext(nodeDto)
-                .expectComplete()
-                .verify();
+            .create(result)
+            .expectNext(nodeDto)
+            .expectComplete()
+            .verify();
     }
 
     @Test
@@ -148,37 +150,54 @@ class MongoNodeServiceImplTest {
         verifyNoMoreInteractions(converterFacade);
 
         StepVerifier
-                .create(result)
-                .expectNext(nodeDto)
-                .expectComplete()
-                .verify();
+            .create(result)
+            .expectNext(nodeDto)
+            .expectComplete()
+            .verify();
+    }
+
+    @Test
+    void shouldDeleteNodeById() {
+        String id = "1";
+
+        when(nodeRootRepository.deleteById(id)).thenReturn(Mono.empty());
+        when(nodeDescRepository.deleteById(id)).thenReturn(Mono.empty());
+
+        Mono<Void> resultMono = service.deleteById(id);
+
+        StepVerifier
+            .create(resultMono)
+            .expectComplete()
+            .verify();
+
+        verify(nodeRootRepository).deleteById(id);
+        verify(nodeDescRepository).deleteById(id);
     }
 
     private NodeDto getNodeDtoDesc(String id) {
         return new NodeDto(
-                id,
-                "name".concat(id),
-                "description".concat(id));
+            id,
+            "name".concat(id),
+            "description".concat(id));
     }
 
     private NodeDto getNodeDtoRoot(String id) {
         return new NodeDto(
-                id,
-                "name".concat(id),
-                null);
+            id,
+            "name".concat(id),
+            null);
     }
 
     private NodeDesc getNodeDesc(String id) {
         return new NodeDesc(
-                id,
-                "name".concat(id),
-                "description".concat(id));
+            id,
+            "name".concat(id),
+            "description".concat(id));
     }
 
     private NodeRoot getNodeRoot(String id) {
         return new NodeRoot(
-                id,
-                "name".concat(id));
+            id,
+            "name".concat(id));
     }
-
 }
